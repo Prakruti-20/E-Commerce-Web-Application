@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionStore | Products Catalog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/products.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-badge {
+            background: #ffcc00;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .demo-banner a { color: #fff; text-decoration: underline; font-weight: 600; }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #111827;
+            color: white;
+        }
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .logo span { color: #f59e0b; }
+        .nav-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            margin: 0 16px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #f59e0b; }
+        .auth-buttons { display: flex; gap: 14px; align-items: center; }
+        .cart-icon {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            position: relative;
+            padding: 6px;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -4px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-btn {
+            padding: 8px 18px;
+            background: #2563eb;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .register-btn {
+            padding: 8px 18px;
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: white;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Filter Controls */
+        .controls-container {
+            max-width: 1200px;
+            margin: 30px auto 20px;
+            padding: 0 20px;
+        }
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: white;
+            padding: 18px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            align-items: center;
+            justify-content: space-between;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 8px 14px;
+            flex: 1;
+            min-width: 250px;
+        }
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            margin-left: 8px;
+            font-size: 14px;
+        }
+        .category-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .chip.active, .chip:hover {
+            background: #111827;
+            color: white;
+            border-color: #111827;
+        }
+        .sort-select {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            background: white;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 20px auto 60px;
+            padding: 0 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        .card-img-wrap {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .product-card:hover .card-img-wrap img {
+            transform: scale(1.05);
+        }
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #111827;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .card-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .cat-tag {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin: 4px 0 8px;
+            min-height: 44px;
+        }
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 14px;
+        }
+        .card-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+        }
+        .btn-view {
+            flex: 1;
+            padding: 9px 0;
+            text-align: center;
+            background: #f3f4f6;
+            color: #111827;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-view:hover { background: #e5e7eb; }
+        .btn-add {
+            flex: 1.2;
+            padding: 9px 0;
+            text-align: center;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-add:hover { background: #f59e0b; color: #111; }
+    </style>
+</head>
+<body>
+
+    <div class="demo-banner">
+        <span class="demo-badge">Live Interactive Demo</span>
+        <span>FashionStore Frontend Preview — Full Java/Tomcat/MySQL source code available on</span>
+        <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">
+            <i class="fa-brands fa-github"></i> GitHub
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">Fashion<span>Store</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html" class="active">All Products</a>
+            <a href="products.html?cat=Men">Men</a>
+            <a href="products.html?cat=Women">Women</a>
+            <a href="products.html?cat=Kids">Kids</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="cart.html" class="cart-icon" title="View Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartCount">2</span>
+            </a>
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="controls-container">
+        <div class="filter-bar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass" style="color:#9ca3af;"></i>
+                <input type="text" id="searchInput" placeholder="Search by name, brand, or style..." onkeyup="filterProducts()">
+            </div>
+
+            <div class="category-chips">
+                <button class="chip active" onclick="setCategory('All', this)">All</button>
+                <button class="chip" onclick="setCategory('Men', this)">Men</button>
+                <button class="chip" onclick="setCategory('Women', this)">Women</button>
+                <button class="chip" onclick="setCategory('Kids', this)">Kids</button>
+                <button class="chip" onclick="setCategory('Footwear', this)">Footwear</button>
+                <button class="chip" onclick="setCategory('Accessories', this)">Accessories</button>
+            </div>
+
+            <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+                <option value="featured">Featured</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- PRODUCT CATALOG GRID -->
+    <div class="product-grid" id="productGrid">
+
+        <!-- 1 -->
+        <div class="product-card" data-category="Men" data-price="1299" data-name="Men Casual Shirt">
+            <div class="card-img-wrap">
+                <span class="badge">Trending</span>
+                <img src="images/products/men-casual-shirt.jpg" alt="Men Casual Shirt">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Men &bull; Allen Solly</span>
+                <h3 class="product-title">Men's Casual Cotton Shirt</h3>
+                <div class="product-price">₹1,299</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=1" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="product-card" data-category="Women" data-price="2499" data-name="Floral Summer Maxi Dress">
+            <div class="card-img-wrap">
+                <span class="badge">Popular</span>
+                <img src="images/products/women-maxi-dress.jpg" alt="Women Maxi Dress">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Women &bull; Zara</span>
+                <h3 class="product-title">Floral Summer Maxi Dress</h3>
+                <div class="product-price">₹2,499</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=2" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="product-card" data-category="Kids" data-price="699" data-name="Kids Cool Graphic T-Shirt">
+            <div class="card-img-wrap">
+                <span class="badge">Best Seller</span>
+                <img src="images/products/kids-tshirt.jpg" alt="Kids T-Shirt">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Kids &bull; H&M</span>
+                <h3 class="product-title">Kids Cool Graphic T-Shirt</h3>
+                <div class="product-price">₹699</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=3" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="product-card" data-category="Footwear" data-price="2199" data-name="Pro Breathable Running Shoes">
+            <div class="card-img-wrap">
+                <span class="badge">Hot</span>
+                <img src="images/products/running-shoes.jpg" alt="Running Shoes">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Footwear &bull; Nike</span>
+                <h3 class="product-title">Pro Breathable Running Shoes</h3>
+                <div class="product-price">₹2,199</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=4" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="product-card" data-category="Men" data-price="1899" data-name="Men Winter Fleece Hoodie">
+            <div class="card-img-wrap">
+                <span class="badge">New</span>
+                <img src="images/products/men-hoodie.jpg" alt="Men Hoodie">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Men &bull; Puma</span>
+                <h3 class="product-title">Men's Winter Fleece Hoodie</h3>
+                <div class="product-price">₹1,899</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=5" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="product-card" data-category="Women" data-price="1199" data-name="Designer Embroidered Kurti">
+            <div class="card-img-wrap">
+                <img src="images/products/women-kurti.jpg" alt="Women Kurti">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Women &bull; Biba</span>
+                <h3 class="product-title">Designer Embroidered Kurti</h3>
+                <div class="product-price">₹1,199</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=6" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="product-card" data-category="Kids" data-price="999" data-name="Kids Stretch Denim Jeans">
+            <div class="card-img-wrap">
+                <img src="images/products/kids-jeans.jpg" alt="Kids Jeans">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Kids &bull; Levi's</span>
+                <h3 class="product-title">Kids Stretch Denim Jeans</h3>
+                <div class="product-price">₹999</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=7" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="product-card" data-category="Accessories" data-price="1799" data-name="Premium Leather Handbag">
+            <div class="card-img-wrap">
+                <span class="badge">Exclusive</span>
+                <img src="images/products/handbag.jpg" alt="Handbag">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Accessories &bull; Fossil</span>
+                <h3 class="product-title">Premium Leather Handbag</h3>
+                <div class="product-price">₹1,799</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=8" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="product-card" data-category="Accessories" data-price="899" data-name="Classic Polarized Sunglasses">
+            <div class="card-img-wrap">
+                <img src="images/products/sunglasses.jpg" alt="Sunglasses">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Accessories &bull; Ray-Ban</span>
+                <h3 class="product-title">Classic Polarized Sunglasses</h3>
+                <div class="product-price">₹899</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=9" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="product-card" data-category="Footwear" data-price="1099" data-name="Women Elegant Flat Sandals">
+            <div class="card-img-wrap">
+                <img src="images/products/women-sandals.jpg" alt="Women Sandals">
+            </div>
+            <div class="card-body">
+                <span class="cat-tag">Footwear &bull; Bata</span>
+                <h3 class="product-title">Women Elegant Flat Sandals</h3>
+                <div class="product-price">₹1,099</div>
+                <div class="card-actions">
+                    <a href="product-details.html?id=10" class="btn-view">Details</a>
+                    <a href="cart.html" class="btn-add">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>FashionStore</h3>
+                <p>Your one-stop destination for stylish, premium online fashion retail.</p>
+                <p style="font-size:13px; color:#9ca3af; margin-top:8px;">Developed by <strong>Prakruti R Joshi</strong> | Full-Stack Java Project</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">All Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentCategory = 'All';
+
+        // Check URL parameters for category
+        const urlParams = new URLSearchParams(window.location.search);
+        const catParam = urlParams.get('cat');
+        if (catParam) {
+            document.querySelectorAll('.chip').forEach(c => {
+                if (c.innerText.toLowerCase() === catParam.toLowerCase()) {
+                    setCategory(catParam, c);
+                }
+            });
+        }
+
+        function setCategory(cat, element) {
+            currentCategory = cat;
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            if (element) element.classList.add('active');
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const name = card.getAttribute('data-name').toLowerCase();
+                const matchesCat = (currentCategory === 'All' || category.toLowerCase() === currentCategory.toLowerCase());
+                const matchesSearch = name.includes(query);
+
+                if (matchesCat && matchesSearch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function sortProducts() {
+            const sortVal = document.getElementById('sortSelect').value;
+            const grid = document.getElementById('productGrid');
+            const cards = Array.from(document.querySelectorAll('.product-card'));
+
+            if (sortVal === 'low') {
+                cards.sort((a, b) => parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price')));
+            } else if (sortVal === 'high') {
+                cards.sort((a, b) => parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price')));
+            }
+            cards.forEach(card => grid.appendChild(card));
+        }
+    </script>
+
+</body>
+</html>

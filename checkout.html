@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionStore | Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-badge {
+            background: #ffcc00;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .demo-banner a { color: #fff; text-decoration: underline; font-weight: 600; }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #111827;
+            color: white;
+        }
+        .logo a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; }
+        .logo span { color: #f59e0b; }
+        .nav-links a { color: #e5e7eb; text-decoration: none; margin: 0 16px; font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: #f59e0b; }
+        .auth-buttons { display: flex; gap: 14px; align-items: center; }
+
+        .checkout-layout {
+            max-width: 1050px;
+            margin: 40px auto 70px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.8fr 1.2fr;
+            gap: 30px;
+        }
+        @media(max-width: 850px) {
+            .checkout-layout { grid-template-columns: 1fr; }
+        }
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .form-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+        .form-group.full { grid-column: span 2; }
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            padding: 11px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: #2563eb; }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .payment-opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .payment-opt.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            height: fit-content;
+        }
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .summary-item img {
+            width: 55px;
+            height: 55px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        .summary-item-info { flex: 1; font-size: 13px; }
+        .summary-item-info strong { display: block; color: #111827; }
+        .summary-item-price { font-weight: 600; color: #111827; font-size: 14px; }
+
+        .btn-place-order {
+            display: block;
+            width: 100%;
+            padding: 15px 0;
+            background: #059669;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-place-order:hover { background: #047857; }
+    </style>
+</head>
+<body>
+
+    <div class="demo-banner">
+        <span class="demo-badge">Live Interactive Demo</span>
+        <span>FashionStore Frontend Preview — Full Java/Tomcat/MySQL source code available on</span>
+        <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">
+            <i class="fa-brands fa-github"></i> GitHub
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">Fashion<span>Store</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="products.html?cat=Men">Men</a>
+            <a href="products.html?cat=Women">Women</a>
+            <a href="products.html?cat=Kids">Kids</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="cart.html" style="color:white; text-decoration:none;"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </div>
+
+    <div class="checkout-layout">
+        <!-- Form Details -->
+        <div class="form-card">
+            <div class="form-title">
+                <i class="fa-solid fa-truck" style="color:#2563eb;"></i> Shipping Address
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" value="Prakruti R Joshi" placeholder="Enter recipient name">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" value="+91 98765 43210" placeholder="10-digit mobile number">
+                </div>
+                <div class="form-group full">
+                    <label>Email Address</label>
+                    <input type="email" value="prakrutijoshi9@gmail.com" placeholder="Order updates will be sent here">
+                </div>
+                <div class="form-group full">
+                    <label>Street Address</label>
+                    <input type="text" value="Flat 402, Green Avenue, MG Road" placeholder="House no, Building, Street">
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" value="Bengaluru" placeholder="City">
+                </div>
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text" value="Karnataka" placeholder="State">
+                </div>
+                <div class="form-group">
+                    <label>PIN Code</label>
+                    <input type="text" value="560001" placeholder="6-digit PIN code">
+                </div>
+            </div>
+
+            <div class="form-title" style="margin-top:30px;">
+                <i class="fa-solid fa-credit-card" style="color:#2563eb;"></i> Payment Method
+            </div>
+            <div class="payment-options">
+                <div class="payment-opt active" onclick="selectPayment(this)">
+                    <i class="fa-solid fa-money-bill-wave" style="color:#059669; font-size:18px;"></i>
+                    <div>
+                        <strong>Cash on Delivery (COD)</strong>
+                        <p style="font-size:12px; color:#6b7280; margin:0;">Pay cash or UPI upon delivery at your doorstep.</p>
+                    </div>
+                </div>
+                <div class="payment-opt" onclick="selectPayment(this)">
+                    <i class="fa-solid fa-qrcode" style="color:#2563eb; font-size:18px;"></i>
+                    <div>
+                        <strong>UPI / Google Pay / PhonePe</strong>
+                        <p style="font-size:12px; color:#6b7280; margin:0;">Instant payment via any UPI app.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-card">
+            <h3 style="font-size:18px; font-weight:700; color:#111827; margin-bottom:20px;">Order Review</h3>
+
+            <div class="summary-item">
+                <img src="images/products/men-casual-shirt.jpg" alt="Item">
+                <div class="summary-item-info">
+                    <strong>Men's Casual Cotton Shirt</strong>
+                    <span style="color:#6b7280;">Qty: 1 &bull; Size: M</span>
+                </div>
+                <div class="summary-item-price">₹1,299</div>
+            </div>
+
+            <div class="summary-item">
+                <img src="images/products/women-maxi-dress.jpg" alt="Item">
+                <div class="summary-item-info">
+                    <strong>Floral Summer Maxi Dress</strong>
+                    <span style="color:#6b7280;">Qty: 1 &bull; Size: L</span>
+                </div>
+                <div class="summary-item-price">₹2,499</div>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #f3f4f6; margin:16px 0;">
+
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:#4b5563;">
+                <span>Subtotal</span>
+                <span>₹3,798</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:#4b5563;">
+                <span>Shipping</span>
+                <span style="color:#059669; font-weight:600;">FREE</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:14px; font-size:18px; font-weight:700; color:#111827; border-top:1px solid #f3f4f6; padding-top:14px;">
+                <span>Grand Total</span>
+                <span>₹3,798</span>
+            </div>
+
+            <a href="order-success.html" class="btn-place-order">
+                <i class="fa-solid fa-lock"></i> Place Order (Demo)
+            </a>
+            <p style="text-align:center; font-size:12px; color:#9ca3af; margin-top:10px;">
+                <i class="fa-solid fa-shield-halved"></i> 256-bit SSL encrypted & secure checkout
+            </p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>FashionStore</h3>
+                <p>Your one-stop destination for stylish, premium online fashion retail.</p>
+                <p style="font-size:13px; color:#9ca3af; margin-top:8px;">Developed by <strong>Prakruti R Joshi</strong> | Full-Stack Java Project</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">All Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function selectPayment(elem) {
+            document.querySelectorAll('.payment-opt').forEach(el => el.classList.remove('active'));
+            elem.classList.add('active');
+        }
+    </script>
+</body>
+</html>

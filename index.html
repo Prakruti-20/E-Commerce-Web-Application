@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionStore | Elevate Your Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-badge {
+            background: #ffcc00;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .demo-banner a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #111827;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .logo span { color: #f59e0b; }
+        .nav-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            margin: 0 16px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #f59e0b;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+        .cart-icon {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            position: relative;
+            padding: 6px;
+            transition: color 0.2s;
+        }
+        .cart-icon:hover { color: #f59e0b; }
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -4px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-btn {
+            padding: 8px 18px;
+            background: #2563eb;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .login-btn:hover { background: #1d4ed8; }
+        .register-btn {
+            padding: 8px 18px;
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: white;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .register-btn:hover { border-color: #f59e0b; color: #f59e0b; }
+    </style>
+</head>
+<body>
+
+    <!-- DEMO INFO BANNER -->
+    <div class="demo-banner">
+        <span class="demo-badge">Live Interactive Demo</span>
+        <span>FashionStore Frontend Preview — Full Java/Tomcat/MySQL source code available on</span>
+        <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">
+            <i class="fa-brands fa-github"></i> GitHub
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">Fashion<span>Store</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="products.html?cat=Men">Men</a>
+            <a href="products.html?cat=Women">Women</a>
+            <a href="products.html?cat=Kids">Kids</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="cart.html" class="cart-icon" title="View Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartCount">2</span>
+            </a>
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">NEW SEASON COLLECTION 2026</p>
+            <h1 class="hero-title">Elevate Your Style With FashionStore</h1>
+            <p class="hero-description">
+                Discover premium fashion for men, women, and kids.
+                Explore the latest trends, timeless essentials, and everyday style
+                crafted for comfort and confidence.
+            </p>
+            <div class="hero-buttons">
+                <a href="products.html" class="primary-btn">Shop Now</a>
+                <a href="products.html" class="secondary-btn">View Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop By Category</h2>
+            <p class="section-subtitle">Find the latest styles across all fashion collections</p>
+
+            <div class="category-grid">
+                <a href="products.html?cat=Men" class="category-card" style="text-decoration:none; color:inherit;">
+                    <img src="images/products/men-casual-shirt.jpg" alt="Men">
+                    <div class="category-overlay">
+                        <h3>Men's Collection</h3>
+                    </div>
+                </a>
+
+                <a href="products.html?cat=Women" class="category-card" style="text-decoration:none; color:inherit;">
+                    <img src="images/products/women-maxi-dress.jpg" alt="Women">
+                    <div class="category-overlay">
+                        <h3>Women's Collection</h3>
+                    </div>
+                </a>
+
+                <a href="products.html?cat=Kids" class="category-card" style="text-decoration:none; color:inherit;">
+                    <img src="images/products/kids-tshirt.jpg" alt="Kids">
+                    <div class="category-overlay">
+                        <h3>Kids' Collection</h3>
+                    </div>
+                </a>
+
+                <a href="products.html?cat=Footwear" class="category-card" style="text-decoration:none; color:inherit;">
+                    <img src="images/products/running-shoes.jpg" alt="Footwear">
+                    <div class="category-overlay">
+                        <h3>Footwear & Accessories</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS SECTION -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="products-header">
+                <div class="products-header-left">
+                    <h2>Featured Products</h2>
+                    <p>Popular picks loved by our customers</p>
+                </div>
+                <a href="products.html" class="primary-btn">See All Products</a>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/products/men-casual-shirt.jpg" alt="Men Casual Shirt">
+                        <div class="product-badge">New</div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Men</p>
+                        <h3 class="product-title">Men's Casual Cotton Shirt</h3>
+                        <p class="product-price">₹1,299</p>
+                        <div class="product-actions">
+                            <a href="cart.html" class="add-cart-btn" style="text-decoration:none; text-align:center;">Add to Cart</a>
+                            <a href="product-details.html?id=1" class="view-btn"><i class="fa-solid fa-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/products/women-maxi-dress.jpg" alt="Women Maxi Dress">
+                        <div class="product-badge">Trending</div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Women</p>
+                        <h3 class="product-title">Floral Summer Maxi Dress</h3>
+                        <p class="product-price">₹2,499</p>
+                        <div class="product-actions">
+                            <a href="cart.html" class="add-cart-btn" style="text-decoration:none; text-align:center;">Add to Cart</a>
+                            <a href="product-details.html?id=2" class="view-btn"><i class="fa-solid fa-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/products/kids-tshirt.jpg" alt="Kids Printed T-Shirt">
+                        <div class="product-badge">Best Seller</div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Kids</p>
+                        <h3 class="product-title">Kids Cool Graphic T-Shirt</h3>
+                        <p class="product-price">₹699</p>
+                        <div class="product-actions">
+                            <a href="cart.html" class="add-cart-btn" style="text-decoration:none; text-align:center;">Add to Cart</a>
+                            <a href="product-details.html?id=3" class="view-btn"><i class="fa-solid fa-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/products/running-shoes.jpg" alt="Running Shoes">
+                        <div class="product-badge">Popular</div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Footwear</p>
+                        <h3 class="product-title">Pro Breathable Running Shoes</h3>
+                        <p class="product-price">₹2,199</p>
+                        <div class="product-actions">
+                            <a href="cart.html" class="add-cart-btn" style="text-decoration:none; text-align:center;">Add to Cart</a>
+                            <a href="product-details.html?id=4" class="view-btn"><i class="fa-solid fa-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFER SECTION -->
+    <section class="offer-section">
+        <p class="offer-subtitle">EXCLUSIVE OFFER</p>
+        <h2 class="offer-title">Upgrade Your Wardrobe With Premium Styles</h2>
+        <p class="offer-description">
+            Enjoy stylish fashion collections designed for every occasion.
+            Explore the latest arrivals and find your perfect look today.
+        </p>
+        <a href="products.html" class="primary-btn">Explore Full Collection</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>FashionStore</h3>
+                <p>Your one-stop destination for stylish, premium online fashion retail.</p>
+                <p style="font-size:13px; color:#9ca3af; margin-top:8px;">Developed by <strong>Prakruti R Joshi</strong> | Full-Stack Java Project</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">All Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionStore | Product Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/product-details.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-badge {
+            background: #ffcc00;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .demo-banner a { color: #fff; text-decoration: underline; font-weight: 600; }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #111827;
+            color: white;
+        }
+        .logo a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; }
+        .logo span { color: #f59e0b; }
+        .nav-links a { color: #e5e7eb; text-decoration: none; margin: 0 16px; font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: #f59e0b; }
+        .auth-buttons { display: flex; gap: 14px; align-items: center; }
+        .cart-icon { color: white; font-size: 20px; text-decoration: none; position: relative; padding: 6px; }
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -4px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .breadcrumb {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        .breadcrumb a { color: #2563eb; text-decoration: none; }
+
+        .details-wrapper {
+            max-width: 1100px;
+            margin: 20px auto 60px;
+            padding: 0 20px;
+        }
+        .details-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+        }
+        @media(max-width: 800px) {
+            .details-card { grid-template-columns: 1fr; }
+        }
+        .img-container {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+        }
+        .img-container img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+        .info-col h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        .brand-badge {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #4b5563;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .price-tag {
+            font-size: 28px;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 16px;
+        }
+        .rating {
+            color: #f59e0b;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .rating span { color: #6b7280; margin-left: 6px; }
+
+        .section-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .size-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .size-btn {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #d1d5db;
+            background: white;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .size-btn.active, .size-btn:hover {
+            border-color: #111827;
+            background: #111827;
+            color: white;
+        }
+        .stock-indicator {
+            font-size: 13px;
+            color: #059669;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .btn-cart-main {
+            flex: 1;
+            padding: 14px 20px;
+            background: #111827;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-cart-main:hover { background: #f59e0b; color: #111; }
+        .btn-buy-now {
+            flex: 1;
+            padding: 14px 20px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-buy-now:hover { background: #1d4ed8; }
+
+        .desc-box {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 20px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #4b5563;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #111827;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            font-size: 14px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="demo-banner">
+        <span class="demo-badge">Live Interactive Demo</span>
+        <span>FashionStore Frontend Preview — Full Java/Tomcat/MySQL source code available on</span>
+        <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">
+            <i class="fa-brands fa-github"></i> GitHub
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">Fashion<span>Store</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="products.html?cat=Men">Men</a>
+            <a href="products.html?cat=Women">Women</a>
+            <a href="products.html?cat=Kids">Kids</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="cart.html" class="cart-icon" title="View Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartCount">2</span>
+            </a>
+            <a href="login.html" class="login-btn" style="padding:8px 18px; background:#2563eb; color:white; border-radius:6px; text-decoration:none;">Login</a>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> / <a href="products.html">Products</a> / <span id="breadcrumbTitle">Men's Casual Cotton Shirt</span>
+    </div>
+
+    <div class="details-wrapper">
+        <div class="details-card">
+            <div class="img-container">
+                <img id="detailImg" src="images/products/men-casual-shirt.jpg" alt="Product Image">
+            </div>
+
+            <div class="info-col">
+                <span class="brand-badge" id="detailBrand">Men &bull; Allen Solly</span>
+                <h1 id="detailTitle">Men's Casual Cotton Shirt</h1>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8 / 5 based on 124 reviews)</span>
+                </div>
+
+                <div class="price-tag" id="detailPrice">₹1,299</div>
+
+                <div class="section-label">Select Size</div>
+                <div class="size-options">
+                    <button class="size-btn" onclick="selectSize('S', this)">S</button>
+                    <button class="size-btn active" onclick="selectSize('M', this)">M</button>
+                    <button class="size-btn" onclick="selectSize('L', this)">L</button>
+                    <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
+                </div>
+
+                <div class="stock-indicator">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span id="stockStatus">In Stock (18 units available)</span>
+                </div>
+
+                <div class="action-row">
+                    <button class="btn-cart-main" onclick="showToast()">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <a href="checkout.html" class="btn-buy-now">
+                        <i class="fa-solid fa-bolt"></i> Buy Now
+                    </a>
+                </div>
+
+                <div class="desc-box">
+                    <h3 style="font-size:15px; margin-bottom:8px; color:#111827;">Product Description</h3>
+                    <p id="detailDesc">
+                        Expertly crafted from 100% breathable organic cotton, offering timeless comfort and relaxed sophistication. Designed with a curved hemline and tailored slim fit, ideal for both everyday casual outings and evening gatherings.
+                    </p>
+                    <ul style="margin-top:12px; padding-left:18px; color:#6b7280; font-size:13px;">
+                        <li>Premium pre-washed fabric with minimal shrinkage</li>
+                        <li>Machine wash cold with like colors</li>
+                        <li>Standard 7-day hassle-free return policy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="cartToast">
+        <i class="fa-solid fa-circle-check" style="color:#10b981; font-size:18px;"></i>
+        <span>Item successfully added to your Cart!</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>FashionStore</h3>
+                <p>Your one-stop destination for stylish, premium online fashion retail.</p>
+                <p style="font-size:13px; color:#9ca3af; margin-top:8px;">Developed by <strong>Prakruti R Joshi</strong> | Full-Stack Java Project</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">All Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const productsData = {
+            "1": { title: "Men's Casual Cotton Shirt", brand: "Men • Allen Solly", price: "₹1,299", img: "images/products/men-casual-shirt.jpg", desc: "Expertly crafted from 100% breathable organic cotton, offering timeless comfort and relaxed sophistication." },
+            "2": { title: "Floral Summer Maxi Dress", brand: "Women • Zara", price: "₹2,499", img: "images/products/women-maxi-dress.jpg", desc: "Flowing floral prints paired with lightweight chiffon. Perfect for brunch dates and evening celebrations." },
+            "3": { title: "Kids Cool Graphic T-Shirt", brand: "Kids • H&M", price: "₹699", img: "images/products/kids-tshirt.jpg", desc: "Soft organic combed cotton with fun vibrant screen prints. Gentle on children's skin and wash-resistant." },
+            "4": { title: "Pro Breathable Running Shoes", brand: "Footwear • Nike", price: "₹2,199", img: "images/products/running-shoes.jpg", desc: "Engineered mesh upper with responsive shock absorption and high-traction rubber outsoles." },
+            "5": { title: "Men's Winter Fleece Hoodie", brand: "Men • Puma", price: "₹1,899", img: "images/products/men-hoodie.jpg", desc: "Warm fleece-lined interior with kangaroo pocket and adjustable drawstring hood." }
+        };
+
+        const id = new URLSearchParams(window.location.search).get('id');
+        if (id && productsData[id]) {
+            const p = productsData[id];
+            document.getElementById('breadcrumbTitle').innerText = p.title;
+            document.getElementById('detailTitle').innerText = p.title;
+            document.getElementById('detailBrand').innerText = p.brand;
+            document.getElementById('detailPrice').innerText = p.price;
+            document.getElementById('detailImg').src = p.img;
+            document.getElementById('detailDesc').innerText = p.desc;
+        }
+
+        function selectSize(size, btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function showToast() {
+            const toast = document.getElementById('cartToast');
+            toast.style.display = 'flex';
+            const count = document.getElementById('cartCount');
+            count.innerText = parseInt(count.innerText) + 1;
+            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+        }
+    </script>
+</body>
+</html>

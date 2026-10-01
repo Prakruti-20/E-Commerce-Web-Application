@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionStore | Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-badge {
+            background: #ffcc00;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .demo-banner a { color: #fff; text-decoration: underline; font-weight: 600; }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #111827;
+            color: white;
+        }
+        .logo a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; }
+        .logo span { color: #f59e0b; }
+        .nav-links a { color: #e5e7eb; text-decoration: none; margin: 0 16px; font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: #f59e0b; }
+
+        .auth-card {
+            max-width: 400px;
+            margin: 60px auto 90px;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .auth-card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+        .auth-subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+        .input-group {
+            margin-bottom: 16px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .input-group input:focus { border-color: #2563eb; }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .btn-submit:hover { background: #1d4ed8; }
+        .auth-switch {
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 20px;
+        }
+        .auth-switch a { color: #2563eb; font-weight: 600; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="demo-banner">
+        <span class="demo-badge">Live Interactive Demo</span>
+        <span>FashionStore Frontend Preview — Full Java/Tomcat/MySQL source code available on</span>
+        <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">
+            <i class="fa-brands fa-github"></i> GitHub
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">Fashion<span>Store</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="cart.html">Cart</a>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="auth-subtitle">Sign in to your FashionStore account</p>
+
+        <form action="index.html" onsubmit="event.preventDefault(); window.location.href='index.html';">
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" value="prakrutijoshi9@gmail.com" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" value="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Sign In</button>
+        </form>
+
+        <p class="auth-switch">
+            Don't have an account? <a href="register.html">Create one now</a>
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>FashionStore</h3>
+                <p>Your one-stop destination for stylish, premium online fashion retail.</p>
+                <p style="font-size:13px; color:#9ca3af; margin-top:8px;">Developed by <strong>Prakruti R Joshi</strong> | Full-Stack Java Project</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">All Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

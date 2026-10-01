@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Placed Successfully | FashionStore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/order-success.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-badge {
+            background: #ffcc00;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .demo-banner a { color: #fff; text-decoration: underline; font-weight: 600; }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #111827;
+            color: white;
+        }
+        .logo a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; }
+        .logo span { color: #f59e0b; }
+        .nav-links a { color: #e5e7eb; text-decoration: none; margin: 0 16px; font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: #f59e0b; }
+        .auth-buttons { display: flex; gap: 14px; align-items: center; }
+
+        .success-box {
+            max-width: 650px;
+            margin: 60px auto 80px;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .check-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #d1fae5;
+            color: #059669;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .order-id-badge {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #374151;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .btn-continue {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-continue:hover { background: #f59e0b; color: #111; }
+    </style>
+</head>
+<body>
+
+    <div class="demo-banner">
+        <span class="demo-badge">Live Interactive Demo</span>
+        <span>FashionStore Frontend Preview — Full Java/Tomcat/MySQL source code available on</span>
+        <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">
+            <i class="fa-brands fa-github"></i> GitHub
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">Fashion<span>Store</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="products.html?cat=Men">Men</a>
+            <a href="products.html?cat=Women">Women</a>
+            <a href="products.html?cat=Kids">Kids</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="cart.html" style="color:white; text-decoration:none;"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </div>
+
+    <div class="success-box">
+        <div class="check-circle">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <h1 style="font-size:26px; font-weight:700; color:#111827; margin-bottom:8px;">Thank You for Your Order!</h1>
+        <p style="color:#6b7280; font-size:14px; margin-bottom:16px;">
+            Your order has been placed successfully and is being prepared for dispatch.
+        </p>
+
+        <div class="order-id-badge">
+            Order Reference: <strong>#FS-2026-92841</strong>
+        </div>
+
+        <div style="background:#f9fafb; border-radius:10px; padding:20px; text-align:left; margin-bottom:30px; font-size:14px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#6b7280;">Estimated Delivery</span>
+                <strong>3 - 5 Business Days</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#6b7280;">Payment Method</span>
+                <strong>Cash on Delivery (COD)</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+                <span style="color:#6b7280;">Total Paid</span>
+                <strong style="color:#059669; font-size:16px;">₹3,798</strong>
+            </div>
+        </div>
+
+        <a href="products.html" class="btn-continue">
+            <i class="fa-solid fa-bag-shopping"></i> Continue Shopping
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>FashionStore</h3>
+                <p>Your one-stop destination for stylish, premium online fashion retail.</p>
+                <p style="font-size:13px; color:#9ca3af; margin-top:8px;">Developed by <strong>Prakruti R Joshi</strong> | Full-Stack Java Project</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">All Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="https://github.com/Prakruti-20/E-Commerce-Web-Application" target="_blank">View GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
