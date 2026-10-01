@@ -2,6 +2,8 @@
 
 A full-stack Java EE dynamic web application for online fashion retail, built using the MVC (Model-View-Controller) architecture, Jakarta Servlets, JSP/JSTL, and MySQL.
 
+> 🌐 **Live Demo Website:** [https://prakruti-20.github.io/E-Commerce-Web-Application/](https://prakruti-20.github.io/E-Commerce-Web-Application/)
+
 ---
 
 ## 📌 Features
