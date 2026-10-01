@@ -1,0 +1,281 @@
+/* ================= GOOGLE FONT ================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ================= GLOBAL RESET ================= */
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	font-family:'Poppins',sans-serif;
+}
+
+/* ================= BODY ================= */
+
+body{
+	background:#f8fafc;
+	color:#111827;
+	min-height:100vh;
+}
+
+/* ================= ROOT COLORS ================= */
+
+:root{
+
+	--primary-dark:#0f172a;
+	--secondary-dark:#111827;
+	--primary-gold:#f59e0b;
+	--gold-hover:#d97706;
+
+	--white:#ffffff;
+	--light-gray:#cbd5e1;
+	--gray:#94a3b8;
+
+	--background:#f8fafc;
+	--border:#e2e8f0;
+
+	--shadow:
+	0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+	width:90%;
+	max-width:1300px;
+	margin:auto;
+}
+
+/* ================= SECTION SPACING ================= */
+
+.section{
+	padding:80px 0;
+}
+
+/* ================= HEADINGS ================= */
+
+.section-title{
+	font-size:38px;
+	font-weight:700;
+	color:var(--primary-dark);
+	margin-bottom:15px;
+	text-align:center;
+}
+
+.section-subtitle{
+	font-size:16px;
+	color:var(--gray);
+	text-align:center;
+	margin-bottom:60px;
+}
+
+/* ================= BUTTONS ================= */
+
+.primary-btn{
+	display:inline-block;
+	padding:14px 28px;
+	background:var(--primary-gold);
+	color:var(--white);
+	text-decoration:none;
+	border:none;
+	border-radius:40px;
+	font-size:15px;
+	font-weight:600;
+	cursor:pointer;
+	transition:0.3s;
+}
+
+.primary-btn:hover{
+	background:var(--gold-hover);
+	transform:translateY(-2px);
+}
+
+.secondary-btn{
+	display:inline-block;
+	padding:13px 26px;
+	background:transparent;
+	color:var(--primary-dark);
+	border:2px solid var(--primary-dark);
+	border-radius:40px;
+	text-decoration:none;
+	font-size:15px;
+	font-weight:600;
+	cursor:pointer;
+	transition:0.3s;
+}
+
+.secondary-btn:hover{
+	background:var(--primary-dark);
+	color:var(--white);
+}
+
+/* ================= INPUT FIELDS ================= */
+
+.input-field{
+	width:100%;
+	height:52px;
+	padding:0 18px;
+	border:1px solid var(--border);
+	border-radius:12px;
+	font-size:15px;
+	outline:none;
+	transition:0.3s;
+	background:white;
+}
+
+.input-field:focus{
+	border-color:var(--primary-gold);
+	box-shadow:0 0 0 4px rgba(245,158,11,0.15);
+}
+
+/* ================= CARD ================= */
+
+.card{
+	background:white;
+	border-radius:20px;
+	box-shadow:var(--shadow);
+	padding:25px;
+	transition:0.3s;
+}
+
+.card:hover{
+	transform:translateY(-5px);
+}
+
+/* ================= PRODUCT GRID ================= */
+
+.product-grid{
+	display:grid;
+	grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+	gap:30px;
+}
+
+/* ================= PRODUCT CARD ================= */
+
+.product-card{
+	background:white;
+	border-radius:20px;
+	overflow:hidden;
+	box-shadow:var(--shadow);
+	transition:0.3s;
+}
+
+.product-card:hover{
+	transform:translateY(-6px);
+}
+
+.product-image{
+	width:100%;
+	height:320px;
+	object-fit:cover;
+}
+
+.product-info{
+	padding:20px;
+}
+
+.product-title{
+	font-size:18px;
+	font-weight:600;
+	color:var(--primary-dark);
+	margin-bottom:8px;
+}
+
+.product-category{
+	font-size:14px;
+	color:var(--gray);
+	margin-bottom:12px;
+}
+
+.product-price{
+	font-size:20px;
+	font-weight:700;
+	color:var(--primary-gold);
+}
+
+/* ================= FLEX ================= */
+
+.flex{
+	display:flex;
+	align-items:center;
+}
+
+.flex-between{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+}
+
+.flex-center{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+/* ================= TEXT ================= */
+
+.text-center{
+	text-align:center;
+}
+
+.text-white{
+	color:white;
+}
+
+/* ================= MARGIN UTILITIES ================= */
+
+.mt-20{
+	margin-top:20px;
+}
+
+.mt-40{
+	margin-top:40px;
+}
+
+.mb-20{
+	margin-bottom:20px;
+}
+
+.mb-40{
+	margin-bottom:40px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:992px){
+
+	.section-title{
+		font-size:32px;
+	}
+}
+
+@media(max-width:768px){
+
+	.section{
+		padding:60px 0;
+	}
+
+	.section-title{
+		font-size:28px;
+	}
+
+	.product-image{
+		height:280px;
+	}
+}
+
+@media(max-width:576px){
+
+	.container{
+		width:92%;
+	}
+
+	.section-title{
+		font-size:24px;
+	}
+
+	.product-grid{
+		grid-template-columns:1fr;
+	}
+}
